@@ -1,31 +1,16 @@
 public class Radio {
-
-    private int minRadioStation;
-    private int maxRadioStation = 10;
-    private int volume;
-    private int minVolume;
-    private int maxVolume = 100;
     private int currentRadioStation;
-
-    public Radio(int currentRadioStation, int maxRadioStation, int volume, int maxVolume) {
-        this.currentRadioStation = currentRadioStation;
-        this.maxRadioStation = maxRadioStation;
-        this.volume = volume;
-        this.maxVolume = maxVolume;
-    }
-
-
-
+    private int volume;
 
     public int getCurrentRadioStation() {
         return currentRadioStation;
     }
 
     public void setCurrentRadioStation(int currentRadioStation) {
-        if (currentRadioStation > maxRadioStation) {
+        if (currentRadioStation > 9) {
             return;
         }
-        if (currentRadioStation < minRadioStation) {
+        if (currentRadioStation < 0) {
             return;
         }
         this.currentRadioStation = currentRadioStation;
@@ -33,8 +18,8 @@ public class Radio {
 
 
     public void prevStation() {
-        if (currentRadioStation == minRadioStation) {
-            this.currentRadioStation = maxRadioStation;
+        if (currentRadioStation == 0) {
+            this.currentRadioStation = 9;
             return;
         }
         this.currentRadioStation--;
@@ -42,42 +27,45 @@ public class Radio {
 
 
     public void nextStation() {
-        if (currentRadioStation == maxRadioStation) {
-            this.currentRadioStation = minRadioStation;
+        if (currentRadioStation == 9) {
+            this.currentRadioStation = 0;
             return;
         }
         this.currentRadioStation++;
     }
+
+
     public int getVolume() {
         return volume;
     }
 
     public void setVolume(int volume) {
-        if (volume < minVolume) {
+        if (volume < 0) {
             return;
         }
-        if (volume > maxVolume) {
+        if (volume > 10) {
             return;
         }
         this.volume = volume;
     }
 
-    public void volumePlus() {
+    public void volumeUpForOne() {
 
-        if (volume == maxVolume) {
+        if (volume == 10) {
             this.volume = volume;
         }
-        if (volume < maxVolume) {
+        if (volume < 10) {
             this.volume++;
         }
     }
 
-    public void volumeMinus() {
-        if (volume == minVolume) {
+    public void volumeDownForOne() {
+        if (volume == 0) {
             this.volume = volume;
         }
-        if (volume > minVolume) {
+        if (volume > 0) {
             this.volume--;
         }
     }
+
 }
