@@ -1,71 +1,91 @@
 public class Radio {
-    private int currentRadioStation;
-    private int volume;
 
-    public int getCurrentRadioStation() {
-        return currentRadioStation;
+    private int currentRadio;
+    private int currentVolume;
+
+
+
+    private int quantityRadio = 10;
+
+    public Radio(int quantityRadio) {
+
+        this.quantityRadio = quantityRadio;
     }
 
-    public void setCurrentRadioStation(int currentRadioStation) {
-        if (currentRadioStation > 9) {
-            return;
-        }
-        if (currentRadioStation < 0) {
-            return;
-        }
-        this.currentRadioStation = currentRadioStation;
+    public Radio() {
+
+        this.quantityRadio = getQuantityRadio();
     }
 
+    public void setQuantityRadio(int quantityRadio) {
 
-    public void prevStation() {
-        if (currentRadioStation == 0) {
-            this.currentRadioStation = 9;
-            return;
-        }
-        this.currentRadioStation--;
+        this.quantityRadio = quantityRadio;
     }
 
+    public int getCurrentRadio() {
+
+        return currentRadio;
+    }
+
+    public int getCurrentVolume() {
+
+        return currentVolume;
+    }
+
+    public int getQuantityRadio() {
+        return quantityRadio;
+    }
+
+    public void setCurrentRadio(int newCurrentRadio) {
+        if (newCurrentRadio < 0) {
+            return;
+        }
+        if (newCurrentRadio > quantityRadio) {
+            return;
+        }
+        currentRadio = newCurrentRadio;
+    }
+
+    public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume < 0) {
+            return;
+        }
+        if (newCurrentVolume > 100) {
+            return;
+        }
+        currentVolume = newCurrentVolume;
+
+    }
 
     public void nextStation() {
-        if (currentRadioStation == 9) {
-            this.currentRadioStation = 0;
-            return;
-        }
-        this.currentRadioStation++;
-    }
-
-
-    public int getVolume() {
-        return volume;
-    }
-
-    public void setVolume(int volume) {
-        if (volume < 0) {
-            return;
-        }
-        if (volume > 10) {
-            return;
-        }
-        this.volume = volume;
-    }
-
-    public void volumeUpForOne() {
-
-        if (volume == 10) {
-            this.volume = volume;
-        }
-        if (volume < 10) {
-            this.volume++;
+        if (currentRadio == quantityRadio-1) {
+            currentRadio = 0;
+        } else {
+            currentRadio = currentRadio + 1;
         }
     }
 
-
-    public void volumeDownForOne() {
-        if (volume == 0) {
-            this.volume = volume;
+    public void prevStation() {
+        if (currentRadio == 0) {
+            currentRadio = quantityRadio-1;
+        } else {
+            currentRadio = currentRadio - 1;
         }
-        if (volume > 0) {
-            this.volume--;
+    }
+
+    public void increaseVolume() {
+        if (currentVolume >= 100) {
+            currentVolume = 100;
+        } else {
+            currentVolume = currentVolume + 1;
+        }
+    }
+
+    public void decreaseVolume() {
+        if (currentVolume == 0) {
+            currentVolume = 0;
+        } else {
+            currentVolume = currentVolume - 1;
         }
     }
 }
